@@ -1,10 +1,10 @@
 --IMPORTING & STAGING
 
--- Using flat file import, impoted cafe sales data into [dirty_cafe_sales] table 
+-- Using flat file import, imported cafe sales data into [dirty_cafe_sales] table 
 --(It will directly create table in the database, no need to create explixcitly)
 -- Created a table [dirty_cafe_sales_staging], copied entire date from [dirty_cafe_sales] for cleaning the data without affecting raw data
 
-CREATE TABLE [dbo].[dirty_cafe_sales_cleaning](
+CREATE TABLE [dbo].[dirty_cafe_sales_staging](
 	[Transaction_ID] [nvarchar](50) NOT NULL,
 	[Item] [nvarchar](50) NULL,
 	[Quantity] [nvarchar](50) NULL,
@@ -96,4 +96,5 @@ CASE
 -- Removing unwanted NULL values
 
 DELETE FROM [dirty_cafe_sales_staging]
+
 WHERE	Item is null or Item IN ('UNKNOWN','ERROR')
